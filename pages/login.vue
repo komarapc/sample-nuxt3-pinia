@@ -14,7 +14,8 @@
               <label class="text-gray-500">Email</label>
               <input
                 type="text"
-                class="w-full border border-gray-300 rounded-lg p-2 outline-none"
+                class="w-full border rounded-lg p-2 outline-none"
+                :class="state.errorEmail ? 'border-red-500' : 'border-gray-300'"
                 autocomplete="off"
                 placeholder="Enter your email"
                 v-model="state.email"
@@ -24,7 +25,10 @@
               <label class="text-gray-500">Password</label>
               <input
                 type="password"
-                class="w-full border border-gray-300 rounded-lg p-2 outline-none"
+                class="w-full border rounded-lg p-2 outline-none"
+                :class="
+                  state.errorPassword ? 'border-red-500' : 'border-gray-300'
+                "
                 autocomplete="off"
                 placeholder="Enter your password"
                 v-model="state.password"
@@ -66,18 +70,23 @@ const authStore = useAuthStore();
 const state = reactive({
   email: "",
   password: "",
+  errorEmail: false,
+  errorPassword: false,
 });
 
 const login = () => {
-  if (state.email === "" || state.password === "") {
-    return;
-  } else {
-    authStore.login({
-      email: state.email,
-      id: nanoid(),
-    });
-    router.push("/");
-  }
+  state.email === "" ? (state.errorEmail = true) : (state.errorEmail = false);
+  state.password === ""
+    ? (state.errorPassword = true)
+    : (state.errorPassword = false);
+  if (state.errorEmail || state.errorPassword) return;
+
+  authStore.login({
+    email: state.email,
+    id: nanoid(),
+  });
+
+  router.push("/");
 };
 
 onMounted(() => {

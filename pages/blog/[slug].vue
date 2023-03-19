@@ -1,5 +1,4 @@
 <template>
-  <title class="capitalize">{{ selectedBlog?.title }}</title>
   <ProtectedComponent>
     <BodyWrapper>
       <AppBar :title-app-bar="selectedBlog?.title"></AppBar>
@@ -24,7 +23,7 @@
                 v-for="blog in blogs.filter(
                   (blog) => blog.id !== selectedBlog?.id
                 )"
-                :key="blog.id"
+                v-bind:key="blog.id"
                 class="w-full md:w-4/13 lg:4/12 p-5 bg-white border border-emerald-500 rounded-lg hover:shadow-lg"
               >
                 <h1 class="text-lg text-emerald-500 font-semibold">
@@ -38,6 +37,24 @@
                   <!-- navigate link to blog page -->
                   <NuxtLink
                     :to="`/blog/${blog.slug}`"
+                    class="text-emerald-500 mt-5 hover:underline hover:underline-offset-4"
+                  >
+                    Go to Blog Page
+                  </NuxtLink>
+                </div>
+              </div>
+              <div
+                class="w-full md:w-4/13 lg:4/12 p-5 bg-white border border-emerald-500 rounded-lg hover:shadow-lg"
+              >
+                <h1 class="text-lg text-emerald-500 font-semibold">Blog 4</h1>
+                <div class="flex flex-col">
+                  <!-- description about blog page. to access this blog page need an authentication -->
+                  <p class="">
+                    {{ String(blogs[2].content).substring(0, 100) }}...
+                  </p>
+                  <!-- navigate link to blog page -->
+                  <NuxtLink
+                    :to="`/blog/blog-4`"
                     class="text-emerald-500 mt-5 hover:underline hover:underline-offset-4"
                   >
                     Go to Blog Page
@@ -61,7 +78,17 @@ import { blogs } from "~~/src/mock/blog";
 const router = useRouter();
 
 const { slug } = router.currentRoute.value.params;
-const selectedBlog = computed(() => {
-  return blogs.find((blog) => blog.slug === slug);
+const selectedBlog = blogs.find((blog) => blog.slug === slug);
+if (!Boolean(selectedBlog)) {
+  showError({
+    statusCode: 404,
+    statusMessage: "Not Found",
+    message: `Page ${router.currentRoute.value.path}`,
+    fatal: false,
+  });
+}
+
+onMounted(() => {
+  console.log({ selectedBlog });
 });
 </script>
