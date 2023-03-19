@@ -31,6 +31,15 @@
               />
             </div>
           </form>
+          <!-- note -->
+          <div
+            class="flex flex-col bg-emerald-50 p-2 rounded border border-emerald-500"
+          >
+            <span class="text-emerald-800 font-bold">Note: </span>
+            <span class="text-emerald-800">
+              This is a demo app, so you can login with any email and password.
+            </span>
+          </div>
           <div class="flex flex-col">
             <button
               class="w-full bg-emerald-500 text-white rounded-lg p-2 hover:bg-emerald-600"
@@ -70,4 +79,9 @@ const login = () => {
     router.push("/");
   }
 };
+
+onMounted(() => {
+  console.log(router.currentRoute.value);
+  if (authStore.isAuthenticated) router.push("/");
+});
 </script>

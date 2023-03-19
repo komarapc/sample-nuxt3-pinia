@@ -12,13 +12,21 @@
         {{ props.titleAppBar }}
       </h1>
     </div>
-    <div>
-      <!-- title -->
+    <div
+      v-if="store.isAuthenticated"
+      class="flex items-center justify-between bg-emerald-500 pl-6 pr-2 py-1 rounded-full space-x-2 shadow-lg"
+    >
+      <div class="text-emerald-50">{{ store.user.email }}</div>
+      <button class="w-10 h-10 bg-white rounded-full mr-10" @click="logout">
+        <Icon name="ic:outline-logout" class="text-xl text-emerald-800" />
+      </button>
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { useRouter } from "vue-router";
+import { useAuthStore } from "@/src/store/auth";
+const store = useAuthStore();
 const router = useRouter();
 const routeName = router.currentRoute.value.name;
 
@@ -28,7 +36,8 @@ const props = defineProps({
     default: "",
   },
 });
-onMounted(() => {
-  // action after mounted
-});
+const logout = () => {
+  store.logout();
+  router.push({ name: "login" });
+};
 </script>
