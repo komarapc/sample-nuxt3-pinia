@@ -2,7 +2,7 @@
   <title>Welcome back</title>
   <BodyWrapper>
     <div
-      class="w-full min-h-screen flex flex-col items-center justify-center space-y-5"
+      class="w-full min-h-screen py-5 flex flex-col items-center justify-center space-y-5"
     >
       <div>
         <h1 class="text-4xl text-emerald-700">Welcome Back</h1>
