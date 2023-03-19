@@ -1,7 +1,7 @@
 <template>
   <title>Counter Page</title>
   <BodyWrapper>
-    <AppBar />
+    <AppBar :title-app-bar="'Counter'" />
     <div class="flex flex-col w-full items-center space-y-5">
       <span class="text-2xl text-emerald-700">Total counter</span>
       <span
