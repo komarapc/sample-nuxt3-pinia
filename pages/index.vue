@@ -9,7 +9,7 @@
       <h1 class="text-2xl text-emerald-800 font-light my-5">
         Example of Pinia state management
       </h1>
-      <div class="flex flex-col md:flex-row space-x-3">
+      <div class="flex flex-col md:flex-row gap-3">
         <div
           class="w-96 p-5 bg-white border border-emerald-500 rounded-lg hover:shadow-lg"
         >
