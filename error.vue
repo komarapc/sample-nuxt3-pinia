@@ -7,7 +7,7 @@
       <div class="flex flex-col items-center justify-center space-y-5">
         <div class="text-8xl text-emerald-700">{{ error.statusCode }}</div>
         <div class="text-4xl font-light text-emerald-700">
-          {{ error.statusMessage }}
+          Oops something went wrong!
         </div>
         <div
           class="bg-emerald-100 p-2 border border-emerald-500 rounded-lg text-2xl text-neutral-500"

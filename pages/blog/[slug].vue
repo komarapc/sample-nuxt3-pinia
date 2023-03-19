@@ -82,7 +82,6 @@ const selectedBlog = blogs.find((blog) => blog.slug === slug);
 if (!Boolean(selectedBlog)) {
   showError({
     statusCode: 404,
-    statusMessage: "Not Found",
     message: `Page ${router.currentRoute.value.path}`,
     fatal: false,
   });
