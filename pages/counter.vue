@@ -20,13 +20,13 @@
     <div class="flex justify-center my-10 space-x-2">
       <button
         class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-lg rounded"
-        @click="counterStore.decrement(variable)"
+        @click="counterStore.decrement(state.variable)"
       >
         decrement
       </button>
       <button
         class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white text-lg rounded"
-        @click="counterStore.increment(variable)"
+        @click="counterStore.increment(state.variable)"
       >
         Increment
       </button>
@@ -42,7 +42,7 @@
       <input
         id="variable"
         type="number"
-        v-model="variable"
+        v-model="state.variable"
         class="text-center text-lg py-2 bg-white border border-emerald-500 outline-none rounded"
       />
     </div>
@@ -56,5 +56,7 @@ import { useCounterStore } from "~~/src/store/counter";
 const counterStore = useCounterStore();
 
 // state
-const variable: number = 1;
+const state = reactive({
+  variable: 1,
+});
 </script>
