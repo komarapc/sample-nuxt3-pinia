@@ -1,4 +1,5 @@
 <template>
+  <title>{{ selectedBlog?.title }}</title>
   <ProtectedComponent>
     <BodyWrapper>
       <AppBar :title-app-bar="selectedBlog?.title"></AppBar>
